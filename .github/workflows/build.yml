@@ -70,8 +70,11 @@ jobs:
       # ----------------------------------------------------------
       # 7. Add Android platform (if not already present)
       # ----------------------------------------------------------
-      - name: Add Android platform
-        run: npx cap add android
+      - name: Add Android platform if missing
+        run: |
+          if [ ! -d android ]; then
+            npx cap add android
+          fi
 
       # ----------------------------------------------------------
       # 8. Synchronize Capacitor with Android
